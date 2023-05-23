@@ -17,7 +17,7 @@
   "Тема2": {
     "Підтема3": {
       "action": "unique"
-      "value": "e = m*c**2"
+      "value": "foobar"
     }
   }
 }
