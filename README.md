@@ -1,4 +1,5 @@
 # Talk Bot
+Для запуску бота запустіть "main.py"
 
 # Формат файлу data.json
 ```json
