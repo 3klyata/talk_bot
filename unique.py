@@ -48,7 +48,4 @@ def nod_nok():
         if(x % i == 0) and (y % i == 0):
             hcf = i
 
-def distance_from_dot_to_line():
-
-
     print(f'{Colors.OKGREEN}НСД: {lcm}, НСК: {hcf}')

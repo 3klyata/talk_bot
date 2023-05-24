@@ -1,5 +1,6 @@
 import json
 import ast
+import sys
 import time
 
 import unique
@@ -36,6 +37,11 @@ class ChatBot:
         text = '\n' + "\n".join(map(lambda x: x.capitalize(), self.db.get_themes()))
         if data.lower() in themes:
             self.states['theme'] = data
+        elif data.lower() == 'вихід':
+            sys.exit()
+        elif data.lower() == 'допомога':
+            print(f'{self.Colors.OKGREEN}Ви не обрали тему, оберіть її з списку та введіть в чат')
+            self.theme_input()
         else:
             print(f'{self.Colors.OKGREEN}Я не знаю цієї теми, натомість, '
                   f'ви можете задати мені питання з наступних тем: '
@@ -52,6 +58,11 @@ class ChatBot:
             return
         elif data.lower() in [x.lower() for x in subthemes]:
             self.states['subtheme'] = data
+        elif data.lower() == 'вихід':
+            sys.exit()
+        elif data.lower() == 'допомога':
+            print(f'{self.Colors.OKGREEN}Ви вибрали тему "{current_theme}", виберіть підтему з списку вище')
+            self.subtheme_input()
         else:
             print(f'{self.Colors.OKGREEN}Я не знаю цієї теми, натомість, '
                   f'ви можете задати мені питання з наступних тем: '
@@ -59,6 +70,7 @@ class ChatBot:
             self.subtheme_input()
 
     def loop(self):
+
 
         if self.states['theme'] is None:
             text = '\n' + "\n".join(map(lambda x: x.capitalize(), self.db.get_themes()))
@@ -72,7 +84,7 @@ class ChatBot:
                 subthemes = self.db.get_subthemes_by_theme(current_theme.lower())
                 text = '\n' + "\n".join(subthemes)
 
-                print(f'{self.Colors.OKGREEN}Ви обрали тему «{current_theme}». '
+                print(f'{self.Colors.OKGREEN}Ви обрали тему «{current_theme}».'
                       f'Ви можете задати мені питання з наступних тем: '
                       f'{text}')
 
